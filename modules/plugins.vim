@@ -6,6 +6,7 @@ Plug 'https://github.com/preservim/tagbar' " Function and class layout
 Plug 'https://github.com/norcalli/nvim-colorizer.lua' " Colorizer
 Plug 'https://github.com/kien/ctrlp.vim' " File Search
 Plug 'https://github.com/vim-airline/vim-airline-themes' " Airline themes
+Plug 'SirVer/ultisnips' " snippets
 
 call plug#end() " Stop calling plugins
 
