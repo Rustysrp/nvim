@@ -29,7 +29,6 @@ augroup exe_code
     autocmd FileType python nnoremap <buffer> <localleader>r
             \ :! clear; python %<CR>
 
-    " test html
     autocmd FileType html nnoremap <buffer> <localleader>r
             \ :!google-chrome %<CR>
             

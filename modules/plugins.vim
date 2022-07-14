@@ -1,14 +1,59 @@
-call plug#begin() " Begin calling plugins
+call plug#begin() " start calling plugins
 
-Plug 'https://github.com/vim-airline/vim-airline' " Status Bar
-Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Color schemes
-Plug 'https://github.com/preservim/tagbar' " Function and class layout
-Plug 'https://github.com/norcalli/nvim-colorizer.lua' " Colorizer
-Plug 'https://github.com/kien/ctrlp.vim' " File Search
-Plug 'https://github.com/vim-airline/vim-airline-themes' " Airline themes
+" special plug for wilder
+if has('nvim')
+    function! UpdateRemotePlugins(...)
+        " needed to refresh runtime files
+        let &rtp=&rtp
+        UpdateRemotePlugins
+    endfunction
+    Plug 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') } " command auto-completion
+else
+    Plug 'gelguy/wilder.nvim' " command auto-completion
+
+    " use python remote plugin features
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+endif
+" basic plug
+Plug 'vim-airline/vim-airline' " status Bar
+Plug 'rafi/awesome-vim-colorschemes' " color schemes
+Plug 'preservim/tagbar' " function and class layout
+Plug 'norcalli/nvim-colorizer.lua' " colorizer
+Plug 'kien/ctrlp.vim' " file Search
+Plug 'vim-airline/vim-airline-themes' " airline themes
 Plug 'SirVer/ultisnips' " snippets
 
-call plug#end() " Stop calling plugins
+call plug#end() " stop calling plugins
 
-" for colorizer
+" plugin config
+
+" enable colorizer
 lua require'colorizer'.setup() 
+
+" wilder
+" popup menu for autocompletion
+call wilder#set_option('renderer', wilder#popupmenu_renderer({
+    \ 'highlighter': wilder#basic_highlighter(),
+    \ 'pumblend': 10,
+    \ }))
+
+" add border to wilder popup menu | border can be single, double, rounded, or solid
+" h: wilder#popupmenu_border_theme() for more details
+call wilder#set_option('renderer', wilder#popupmenu_renderer(wilder#popupmenu_border_theme({
+    \ 'highlights': {
+    \   'border': 'Normal',
+    \ },
+    \ 'border': 'rounded',
+    \ })))
+
+" setup pipeline for file autocompletion
+call wilder#set_option('pipeline', [
+    \   wilder#branch(
+    \       wilder#cmdline_pipeline({
+    \           'language': 'vim',
+    \           'fuzzy': 1,
+    \           'fuzzy_filter': wilder#vim_fuzzy_filter(),
+    \       }),
+    \   ),
+    \ ])
