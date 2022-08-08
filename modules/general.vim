@@ -13,5 +13,7 @@
 :set splitbelow " splits will open below current file
 :set undodir=~/.vimdid
 :set undofile " Allows to undo after saving and closing a file then reopening
+:set runtimepath+=~/.config/nvim/snippets
 
 :let maplocalleader = "["
+

@@ -23,10 +23,14 @@ Plug 'norcalli/nvim-colorizer.lua' " colorizer
 Plug 'kien/ctrlp.vim' " file Search
 Plug 'vim-airline/vim-airline-themes' " airline themes
 Plug 'SirVer/ultisnips' " snippets
+Plug 'Rustysrp/vim-gusher' " theme
 
 call plug#end() " stop calling plugins
 
 " plugin config
+
+" ultisnips config
+let g:UltiSnipsSnippetDirectories=["snippet"] " set the directories to be checked for snipptes
 
 " enable colorizer
 lua require'colorizer'.setup() 
