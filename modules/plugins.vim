@@ -24,6 +24,7 @@ Plug 'kien/ctrlp.vim' " file Search
 Plug 'vim-airline/vim-airline-themes' " airline themes
 Plug 'SirVer/ultisnips' " snippets
 Plug 'Rustysrp/vim-gusher' " theme
+Plug 'scrooloose/nerdtree' " nerdtree
 
 call plug#end() " stop calling plugins
 
@@ -32,32 +33,3 @@ call plug#end() " stop calling plugins
 " ultisnips config
 let g:UltiSnipsSnippetDirectories=["snippet"] " set the directories to be checked for snipptes
 
-" enable colorizer
-lua require'colorizer'.setup() 
-
-" wilder
-" popup menu for autocompletion
-call wilder#set_option('renderer', wilder#popupmenu_renderer({
-    \ 'highlighter': wilder#basic_highlighter(),
-    \ 'pumblend': 10,
-    \ }))
-
-" add border to wilder popup menu | border can be single, double, rounded, or solid
-" h: wilder#popupmenu_border_theme() for more details
-call wilder#set_option('renderer', wilder#popupmenu_renderer(wilder#popupmenu_border_theme({
-    \ 'highlights': {
-    \   'border': 'Normal',
-    \ },
-    \ 'border': 'rounded',
-    \ })))
-
-" setup pipeline for file autocompletion
-call wilder#set_option('pipeline', [
-    \   wilder#branch(
-    \       wilder#cmdline_pipeline({
-    \           'language': 'vim',
-    \           'fuzzy': 1,
-    \           'fuzzy_filter': wilder#vim_fuzzy_filter(),
-    \       }),
-    \   ),
-    \ ])

@@ -6,6 +6,7 @@ nnoremap <C-t> :tabnew<CR>
               \:e 
 nnoremap <C-x> :tabc<CR>
 noremap J %
+nnoremap " <C-w>
 
 "Run code * <localleader key>
 "             currently `[`
