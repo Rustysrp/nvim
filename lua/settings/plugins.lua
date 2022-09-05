@@ -1,7 +1,7 @@
 -- call plugins
 return require('packer').startup(function()
 	
-	-- call pack manager
+    -- call pack manager
 	use('wbthomason/packer.nvim') 
 
 	use{
@@ -38,6 +38,5 @@ return require('packer').startup(function()
 		    border = 'rounded',
 		  })
 		))
-
 	}
 end)
