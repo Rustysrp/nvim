@@ -14,9 +14,12 @@ o.relativenumber = true
 
 -- better editing
 o.expandtab = true
+o.smarttab = true
 o.wrap = true
 o.tabstop = 4
+o.expandtab = true
 o.shiftwidth = 0
+o.undofile = true
 
 -- searches aren't case sensitive unless /C is used
 o.ignorecase = true
