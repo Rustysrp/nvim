@@ -1,33 +1,38 @@
--- call plugins
+-- Call plugins
 return require('packer').startup(function()
 	
-    -- call plugin manager (packer)
+    -- Call plugin manager (packer)
 	use('wbthomason/packer.nvim') 
 
-	use{
+
+    -- Improve ui ( lualine, vim-gusher, scrollbar, colorizer )
+	use {
 		'nvim-lualine/lualine.nvim',
 		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
 		require('lualine').setup()
-	}
-
-	-- theme
+	} 
 	use('Rustysrp/vim-gusher')
-
-    -- css color indicators
+    use { 
+        'petertriho/nvim-scrollbar',
+        require('scrollbar').setup()
+    }
     use {
         'norcalli/nvim-colorizer.lua',
     	require 'colorizer'.setup()
     }
 
-	-- file management
-	use('preservim/nerdtree')
-    use('ryanoasis/vim-devicons') -- icons for nerdtree
-    use('Xuyuanp/nerdtree-git-plugin') -- git status for nerdtree
 
-    -- command autocompletion
+	-- File management ( nerdtree, devicons plugin, git plugin )
+	use('preservim/nerdtree')
+    use('ryanoasis/vim-devicons') 
+    use('Xuyuanp/nerdtree-git-plugin') 
+
+
+    -- Command autocompletion
 	use {
 		'gelguy/wilder.nvim',
 
+        -- mode activation
 		require('wilder').setup({modes = {':', '/', '?'}}),
 
         -- palette in middle of screen
@@ -40,8 +45,8 @@ return require('packer').startup(function()
             min_height = 0,          -- set to the same as 'max_height' for a fixed height window
             prompt_position = 'top', -- 'top' or 'bottom' to set the location of the prompt
             reverse = 0,             -- set to 1 to reverse the order of the list, use in combination with 'prompt_position'
+            left = {' ', require('wilder').popupmenu_devicons()}, -- devicons on the left of palette
           })
-         ))
-
+         )),
 	}
 end)
