@@ -1,4 +1,3 @@
-local g = vim.g
 local o = vim.o
 local A = vim.api
 
@@ -29,6 +28,3 @@ o.smartcase = true
 o.splitbelow = true
 o.splitright = true
 
--- map leader keys
-g.mapleader = '['
-g.maplocalleader = ']'
