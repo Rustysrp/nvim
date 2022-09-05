@@ -7,15 +7,25 @@ function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
--- set leader keys to space
+-- Set leader keys to space
 vim.g.mapleader = ' '
 
--- open tabs with other files
+-- Open tabs with other files
 map("n", "<C-t>", ":tabnew ")
 
--- switch tabs
+-- Close tabs
+map("n", "<C-x>", ":tabc<CR>")
+
+-- Switch tabs
 map("n", "H", "gT")
 map("n", "L", "gt")
 
--- nerdtree keybinds
+-- Faster saving and quitting
+map("n", "<leader>w", ":w<CR>")
+map("n", "<leader>q", ":q<CR>")
+
+-- Simpler redo
+map("n", "<leader>r", "<C-r>")
+
+-- Nerdtree keybinds
 map("n", "<leader>n", ":NERDTreeToggle<CR>")
