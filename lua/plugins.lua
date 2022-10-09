@@ -1,9 +1,22 @@
+-- Install packer if not on system
+local ensure_packer = function()
+	local fn = vim.fn
+	local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+	if fn.empty(fn.glob(install_path)) > 0 then
+		fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+		vim.cmd [[packadd packer.nvim]]
+		return true
+	end
+	return false
+end
+
+local packer_bootstrap = ensure_packer()
+
 -- Call plugins
-return require('packer').startup(function()
+return require('packer').startup(function(use)
 	
     -- Call plugin manager (packer)
 	use('wbthomason/packer.nvim') 
-
 
     -- Improve ui ( lualine, vim-gusher, scrollbar, colorizer )
 	use {
@@ -12,6 +25,7 @@ return require('packer').startup(function()
 		require('lualine').setup()
 	} 
 	use('Rustysrp/vim-gusher')
+
     use { 
         'petertriho/nvim-scrollbar',
         require('scrollbar').setup()
@@ -49,4 +63,10 @@ return require('packer').startup(function()
           })
          )),
 	}
+    
+    -- Sync if not installed
+	if packer_bootstrap then
+		require('packer').sync()
+	end
+
 end)
