@@ -3,8 +3,8 @@ local o = vim.o
 local A = vim.api
 
 -- Colors and theme
+vim.cmd "set termguicolors"
 vim.cmd "colorscheme gusher"
-o.termguicolors = true
 o.background = 'dark'
 
 -- Improve ui
