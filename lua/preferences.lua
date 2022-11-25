@@ -3,7 +3,6 @@ local o = vim.o
 local A = vim.api
 
 -- Colors and theme
-vim.cmd "set termguicolors"
 vim.cmd "colorscheme ayu"
 o.background = 'dark'
 
