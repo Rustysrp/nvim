@@ -24,15 +24,50 @@ return require('packer').startup(function(use)
 		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
 		require('lualine').setup()
 	} 
+
 	use('Rustysrp/vim-gusher')
+    use('rafi/awesome-vim-colorschemes')
 
     use { 
         'petertriho/nvim-scrollbar',
         require('scrollbar').setup()
     }
+
     use {
         'norcalli/nvim-colorizer.lua',
     	require 'colorizer'.setup()
+    }
+
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        require('nvim-treesitter.configs').setup {
+
+            -- Ensure desired languages are installed
+            ensure_installed = { "c", "cpp", "lua", "rust" },
+
+            auto_install = true,
+
+            -- Enable highlighting 
+            highlight = {
+
+                enable = true,
+
+                -- disable = { "c", "cpp", "rust" },
+
+                --[[
+                disable = function(lang, buf)
+                    local max_filesize = 100 * 1024
+                    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+                    if ok and stats and stats.size > max_filesize then
+                        return true
+                    end
+                end,
+                ]]--
+
+                -- Turning this on might result in a slower experience
+                additional_vim_regex_highlighting = false,
+            },
+        }
     }
 
 
@@ -58,7 +93,7 @@ return require('packer').startup(function(use)
             max_height = '60%',      -- max height of the palette
             min_height = 0,          -- set to the same as 'max_height' for a fixed height window
             prompt_position = 'top', -- 'top' or 'bottom' to set the location of the prompt
-            reverse = 0,             -- set to 1 to reverse the order of the list, use in combination with 'prompt_position'
+            reverse = 0,             -- set to 1 to reverse the order of the list, use with 'prompt_position'
             left = {' ', require('wilder').popupmenu_devicons()}, -- devicons on the left of palette
           })
          )),
