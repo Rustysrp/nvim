@@ -1,4 +1,4 @@
--- Install packer if not on system
+-- Check and install packer if not on system
 local ensure_packer = function()
 	local fn = vim.fn
 	local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -10,34 +10,39 @@ local ensure_packer = function()
 	return false
 end
 
+-- Run the check
 local packer_bootstrap = ensure_packer()
 
--- Call plugins
+-- Start call plugins
 return require('packer').startup(function(use)
 	
-    -- Call plugin manager (packer)
+    -- Plugin manager (packer)
 	use('wbthomason/packer.nvim') 
 
-    -- Improve ui ( lualine, vim-gusher, scrollbar, colorizer )
+    -- UI improvements (lualine, vim-gusher, scrollbar, colorizer, treesitter)
 	use {
 		'nvim-lualine/lualine.nvim',
 		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
 		require('lualine').setup()
 	} 
 
+    -- Import color schemes
 	use('Rustysrp/vim-gusher')
     use('rafi/awesome-vim-colorschemes')
 
+    -- Scrollbar on right side of scroon
     use { 
         'petertriho/nvim-scrollbar',
         require('scrollbar').setup()
     }
 
+    -- Visualizes color values
     use {
         'norcalli/nvim-colorizer.lua',
     	require 'colorizer'.setup()
     }
 
+    -- Treesitter config, syntax highlighting
     use {
         'nvim-treesitter/nvim-treesitter',
         require('nvim-treesitter.configs').setup {
@@ -54,6 +59,7 @@ return require('packer').startup(function(use)
 
                 -- disable = { "c", "cpp", "rust" },
 
+                -- Disable syntax highlighting when file size exceeds certain value (1024 kb)
                 --[[
                 disable = function(lang, buf)
                     local max_filesize = 100 * 1024
@@ -64,42 +70,42 @@ return require('packer').startup(function(use)
                 end,
                 ]]--
 
-                -- Turning this on might result in a slower experience
+                -- Turning this on might result in a slower processing time
                 additional_vim_regex_highlighting = false,
             },
         }
     }
 
 
-	-- File management ( nerdtree, devicons plugin, git plugin )
+	-- File management (nerdtree, devicons plugin, git plugin)
 	use('preservim/nerdtree')
     use('ryanoasis/vim-devicons') 
     use('Xuyuanp/nerdtree-git-plugin') 
 
 
-    -- Command autocompletion
+    -- Command autocompletion + box popup
 	use {
 		'gelguy/wilder.nvim',
 
-        -- mode activation
+        -- Mode activation
 		require('wilder').setup({modes = {':', '/', '?'}}),
 
-        -- palette in middle of screen
+        -- Palette in middle of screen
         require('wilder').set_option('renderer', require('wilder').popupmenu_renderer(
           require('wilder').popupmenu_palette_theme({
             -- 'single', 'double', 'rounded' or 'solid'
-            -- can also be a list of 8 characters, see :h wilder#popupmenu_palette_theme() for more details
+            -- Can also be a list of 8 characters, see :h wilder#popupmenu_palette_theme() for more details
             border = 'rounded',
-            max_height = '60%',      -- max height of the palette
-            min_height = 0,          -- set to the same as 'max_height' for a fixed height window
+            max_height = '60%',      -- Max height of the palette
+            min_height = 0,          -- Set to the same as 'max_height' for a fixed height window
             prompt_position = 'top', -- 'top' or 'bottom' to set the location of the prompt
-            reverse = 0,             -- set to 1 to reverse the order of the list, use with 'prompt_position'
-            left = {' ', require('wilder').popupmenu_devicons()}, -- devicons on the left of palette
+            reverse = 0,             -- Set to 1 to reverse the order of the list, use with 'prompt_position'
+            left = {' ', require('wilder').popupmenu_devicons()}, -- Devicons on the left of palette
           })
          )),
 	}
     
-    -- Sync if not installed
+    -- Sync plugins if not installed
 	if packer_bootstrap then
 		require('packer').sync()
 	end
