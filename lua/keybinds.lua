@@ -19,6 +19,9 @@ map("n", "<C-x>", ":tabc<CR>")
 map("n", "H", "gT")
 map("n", "L", "gt")
 
+-- Open terminal
+map("n", "<leader>t", ":terminal<CR>i")
+
 -- Go to top of file 
 map("n", "<leader>g", "gg")
 
