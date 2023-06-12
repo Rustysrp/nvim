@@ -16,6 +16,7 @@ local packer_bootstrap = ensure_packer()
 -- Start call plugins
 return require('packer').startup(function(use)
 	
+    -- [[
     -- Plugin manager (packer)
 	use('wbthomason/packer.nvim') 
 
@@ -41,6 +42,22 @@ return require('packer').startup(function(use)
         'norcalli/nvim-colorizer.lua',
     	require 'colorizer'.setup()
     }
+
+    -- Enables transparent background
+    use {
+        'xiyaowong/transparent.nvim',
+        require('transparent').setup({
+            groups = {
+                'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+                'Statement', 'PrePro.', 'Type', 'Underlined', 'todo', 'String', 'Function',
+                'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText', 
+                'SignColumn', 'CursorLineNr', 'EndOfBuffer',
+            },
+            extra_groups = { "NormalFloat", "NvimTreeNormal" },
+            exclude_groups = {},
+        })
+    }
+
 
     -- Treesitter config, syntax highlighting
     use {
@@ -104,6 +121,7 @@ return require('packer').startup(function(use)
           })
          )),
 	}
+    -- ]]--
     
     -- Sync plugins if not installed
 	if packer_bootstrap then
