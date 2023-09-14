@@ -15,8 +15,24 @@ local packer_bootstrap = ensure_packer()
 
 -- Start call plugins
 return require('packer').startup(function(use)
+
+    --[[ Use for new installs only
+    use ('wbthomason/packer.nvim')
+	use('nvim-lualine/lualine.nvim')
+	use('Rustysrp/vim-gusher')
+	use('rafi/awesome-vim-colorschemes')
+	use('petertriho/nvim-scrollbar')
+	use('norcalli/nvim-colorizer.lua')
+	use('xiyaowong/transparent.nvim')
+	use('nvim-treesitter/nvim-treesitter')
+	use('preservim/nerdtree')
+	use('ryanoasis/vim-devicons')
+	use('Xuyuanp/nerdtree-git-plugin')
+	use('gelguy/wilder.nvim')
+    ]]--
+
 	
-    -- [[
+    --
     -- Plugin manager (packer)
 	use('wbthomason/packer.nvim') 
 
@@ -58,7 +74,6 @@ return require('packer').startup(function(use)
         })
     }
 
-
     -- Treesitter config, syntax highlighting
     use {
         'nvim-treesitter/nvim-treesitter',
@@ -77,7 +92,7 @@ return require('packer').startup(function(use)
                 -- disable = { "c", "cpp", "rust" },
 
                 -- Disable syntax highlighting when file size exceeds certain value (1024 kb)
-                --[[
+            
                 disable = function(lang, buf)
                     local max_filesize = 100 * 1024
                     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
@@ -85,7 +100,7 @@ return require('packer').startup(function(use)
                         return true
                     end
                 end,
-                ]]--
+                --
 
                 -- Turning this on might result in a slower processing time
                 additional_vim_regex_highlighting = false,
@@ -121,7 +136,7 @@ return require('packer').startup(function(use)
           })
          )),
 	}
-    -- ]]--
+    --
     
     -- Sync plugins if not installed
 	if packer_bootstrap then
