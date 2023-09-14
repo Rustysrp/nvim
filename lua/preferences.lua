@@ -8,7 +8,7 @@ o.background = 'dark'
 
 -- Improve ui
 o.number = true
-o.cursorline = true
+o.cursorline = false
 o.relativenumber = true
 
 -- Better editing
