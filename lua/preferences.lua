@@ -3,7 +3,7 @@ local o = vim.o
 local A = vim.api
 
 -- Colors and theme
-vim.cmd "colorscheme ayu"
+vim.cmd "colorscheme gotham"
 o.background = 'dark'
 
 -- Improve ui
