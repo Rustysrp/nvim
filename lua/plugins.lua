@@ -29,6 +29,7 @@ return require('packer').startup(function(use)
 	use('ryanoasis/vim-devicons')
 	use('Xuyuanp/nerdtree-git-plugin')
 	use('gelguy/wilder.nvim')
+    use('lervage/vimtex')
     ]]--
 
 	
@@ -42,6 +43,9 @@ return require('packer').startup(function(use)
 		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
 		require('lualine').setup()
 	} 
+
+    -- Vim / latex plugin
+    use('lervage/vimtex')
 
     -- Import color schemes
 	use('Rustysrp/vim-gusher')
