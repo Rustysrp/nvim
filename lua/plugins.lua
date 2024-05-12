@@ -44,9 +44,11 @@ return require('packer').startup(function(use)
 		require('lualine').setup()
 	} 
 
+    -- Vim / latex plugin
+    use('lervage/vimtex')
+
     -- Import color schemes
 	use('Rustysrp/vim-gusher')
-    use('Rustysrp/cotton-candy')
     use('rafi/awesome-vim-colorschemes')
 
     -- Scrollbar on right side of scroon
