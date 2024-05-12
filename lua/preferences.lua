@@ -21,8 +21,6 @@ o.tabstop = 4
 o.expandtab = true
 o.shiftwidth = 0
 o.ttyfast = true
-o.undodir = "~/.vimdid"
-o.undofile = true
 
 -- Searches aren't case sensitive unless /C is used
 o.ignorecase = true
