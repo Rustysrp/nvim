@@ -6,7 +6,6 @@ local A = vim.api
 
 -- Colors and theme
 vim.cmd "colorscheme purify"
->>>>>>> a7ff271 (upd)
 o.background = 'dark'
 
 -- Improve ui
