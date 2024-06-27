@@ -5,7 +5,8 @@ local A = vim.api
 -- Vimtex config
 
 -- Colors and theme
-vim.cmd "colorscheme gotham"
+vim.cmd "colorscheme purify"
+>>>>>>> a7ff271 (upd)
 o.background = 'dark'
 
 -- Improve ui
